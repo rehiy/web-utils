@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>${pages.gzip.title}</title>
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="keywords" content="${pages.gzip.keywords}" />
+    <meta name="description" content="${pages.gzip.description}" />
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
+    <link href="/static/style/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/static/style/tool.css" rel="stylesheet" type="text/css" />
+    ${pages.header}
+</head>
+
+<body>{include file="header" /}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col10main">
+                <div class="accordion" id="accordion2">
+                    <div class="accordion-group">
+                        <ul class="nav nav-tabs hbflag">
+                            <li role="presentation"><a href="/checkweixin/">微信域名检测工具</a></li>
+                            <li role="presentation"><a href="/htaccess2nginx/">htaccess转nginx</a></li>
+                            <li role="presentation"><a href="/shortcut/">生成桌面快捷方式</a></li>
+                            <li role="presentation"><a href="/px2rem/">rem与px转换工具</a></li>
+                            <li role="presentation"><a href="/favicon/">在线制作ico图标</a></li>
+                            <li role="presentation"><a href="/createmeta/">生成网页Meta标签</a></li>
+                            <li role="presentation" class="active"><a href="/gzip/">网站Gzip压缩检测</a></li>
+                            <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;" role="button" aria-haspopup="true" aria-expanded="false">更多工具<span class="caret"> </span></a>
+                                <ul class="dropdown-menu">
+                                    <li role="presentation"><a href="/refresh/">在线定时刷新网址</a></li>
+                                    <li role="presentation"><a href="/tiaoseban/">在线调色板</a></li>
+                                    <li role="presentation"><a href="/checkurl/">网站死链检测</a></li>
+                                    <li role="presentation"><a href="/whois/"> Whois查询工具</a></li>
+                                    <li role="presentation"><a href="/chaicp/">ICP网站备案查询</a></li>
+                                    <li role="presentation"><a href="/chameta/">Meta标签优化分析</a></li>
+                                    <li role="presentation"><a href="/checkkeyword/">网页关键词密度检测</a></li>
+                                    <li role="presentation"><a href="/webstatus/">HTTP状态码查询</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="panel">
+                            <form id="form1" class="form-horizontal" method="post">
+                                <div class="input-group mb5">
+                                    <input class="form-control" type="text" name="q" id="url" value="${q}" placeholder="输入网址" />
+                                    <span class="input-group-btn"><button class="btn btn-success" type="submit" id="get_remote">检测</button></span>
+                                </div>
+                                {if $q && $gzip}
+                                <div class="form-group">
+                                    <div class="col-sm-8">
+                                        <table class="table table-hover table-bordered table-striped">
+                                            <caption>
+                                                <strong>Header信息</strong>
+                                            </caption>
+                                            {foreach $gzip.head as $key=>$vo}
+                                            <tr>
+                                                <td style="width:140px">${key}</td>
+                                                <td>${vo}</td>
+                                            </tr>
+                                            {/foreach}
+                                        </table>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <table class="table table-hover table-bordered table-striped">
+                                            <caption>
+                                                <strong>网址 ${url} 检测结果</strong>
+                                            </caption>
+                                            <tr>
+                                                <td style="width:140px">是否压缩</td>
+                                                <td class="text-center">
+                                                    <strong>{if $gzip.jc.ystype=='gzip'}<font color="green">是</font>{else}<font color="red">否</font>{/if}</strong>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:140px">压缩类型</td>
+                                                <td class="text-center">${gzip.jc.ystype}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:140px">原始文件大小</td>
+                                                <td class="text-center">${gzip.jc.ysize}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:140px">压缩后文件大小</td>
+                                                <td class="text-center">${gzip.jc.yssize}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:140px">压缩率（估计值）</td>
+                                                <td class="text-center">${gzip.jc.ysl} %</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                {elseif $q}
+                                <div class="form-group">
+                                    <div class="col-sm-12 text-left">
+                                        <h3><strong style="color:#c00">查询异常（请检查网站能否正常访问）</strong></h3>
+                                    </div>
+                                </div>
+                                {/if}
+                                <div class="form-group" style="margin-top:50px">
+                                    <div class="col-sm-12">
+                                        <p>最近查询：</p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="alert alert alert-success alert-dismissible">
+                        <h4>网页Gzip压缩检测</h4>
+                        <p>网站Gzip压缩检测工具为您提供网站Gzip压缩检测,网站压缩比例检测,压缩后下载速度检测,网页压缩后大小,原始文件大小,网页gzip压缩后与压缩前对比。</p>
+                        <h4>为什么要开启Gzip</h4>
+                        <p>Gzip开启后,会在将数据显示给用户前,对输出浏览器的数据进行压缩处理，这样就会减小通过网络传输的数据量，提高浏览的速度,节省带宽。</p>
+                    </div>
+                    <div class="accordion-group"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/script/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="/static/script/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/static/script/tool.js" type="text/javascript"></script>
+    {include file="footer" /}
+</body>
+
+</html>
