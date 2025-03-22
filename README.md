@@ -4,7 +4,7 @@
 
 ## 示例站点
 
-- [https://apps.opentdp.org](https://apps.opentdp.org)
+- [https://apps.rehiy.com](https://apps.rehiy.com/utils)
 
 ## Nginx 伪静态
 
