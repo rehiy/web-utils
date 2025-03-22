@@ -4,7 +4,7 @@
 
 ## 示例站点
 
-- [https://apps.rehiy.com](https://apps.rehiy.com/utils)
+- [https://apps.rehiy.com](https://apps.rehiy.com/web-utils)
 
 ## Nginx 伪静态
 
